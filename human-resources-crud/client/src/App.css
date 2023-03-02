@@ -1,0 +1,83 @@
+body {
+    background: #f1f1f1;
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: #000;
+}
+
+html, body, #root, #app {
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: row;
+}
+
+#app > aside {
+    background: #d0d1d6;
+    flex: 0 0 300px;
+}
+
+#app > aside > nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 25px;
+}
+
+#app > main > h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#app > main {
+    flex: 1;
+}
+
+#app > main .container {
+    padding: 20px;
+}
+
+#app > main .container > h1:first-child {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.ui-box {
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.ui-box > .ui-box-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+#footer {
+    background: #d0d1d6;
+}
+.img-thumbnail {
+    width:40px;
+    height:40px;
+    object-fit: cover;
+}
+
+#site-references {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}

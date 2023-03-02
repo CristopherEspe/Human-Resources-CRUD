@@ -1,0 +1,21 @@
+{
+  "name": "human_resources_crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server:run": "pnpm --filter server run start",
+    "server:watch": "pnpm --filter server run watch",
+    "client:run": "pnpm --filter client run start",
+    "client:build": "pnpm --filter client run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "client": "workspace:*",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^7.0.0",
+    "server": "workspace:*"
+  }
+}
