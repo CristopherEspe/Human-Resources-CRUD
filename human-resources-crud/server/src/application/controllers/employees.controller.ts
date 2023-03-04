@@ -45,24 +45,12 @@ export default class EmployeesController extends Controller {
         method: 'post'
     })
     public async create(request: Request, response: Response) {
-        const email = request.body.email;
-        const exists = await Employee.findOne({ where: { email } });
-
-        if (exists) {
-            response.status(400).json({ message: 'Email already exists' });
-            return;
-        }
-
-        try {
-            const employee = await Employee.create({
-                ...request.body
-            }, {
-                include: [Job, Department]
-            });
-            response.json(employee);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        const employee = await Employee.create({
+            ...request.body
+        }, {
+            include: [Job, Department]
+        });
+        response.json(employee);
     }
 
     @Route({
@@ -71,14 +59,6 @@ export default class EmployeesController extends Controller {
     })
     public async update(request: Request, response: Response) {
         const id = request.params.id;
-        const email = request.body.email;
-        
-        // check if name already exists and id is not the same
-        const exists = await Employee.findOne({ where: { email } });
-        if (exists && exists.id !== id) {
-            response.status(400).json({ message: 'Email already exists' });
-            return;
-        }
 
         if (!id) {
             response.status(400).json({ message: 'Invalid id' });
@@ -92,12 +72,8 @@ export default class EmployeesController extends Controller {
             return;
         }
 
-        try {
-            await employee.update(request.body);
-            response.json(employee);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        await employee.update(request.body);
+        response.json(employee);
     }
 
     @Route({

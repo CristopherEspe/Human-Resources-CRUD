@@ -24,10 +24,10 @@ function Jobs() {
     const onSubmit = async (e) => {
         e.preventDefault();
         const title = e.target.title.value;
-        const minSalary = parseFloat(e.target.minSalary.value);
-        const maxSalary = parseFloat(e.target.maxSalary.value);
+        const minSalary = e.target.minSalary.value;
+        const maxSalary = e.target.maxSalary.value;
 
-        if (minSalary > maxSalary) {
+        if (minSalary < maxSalary) {
             setFormError('El salario minimo no puede ser mayor al salario maximo');
             return;
         }
@@ -50,11 +50,7 @@ function Jobs() {
         if (response.ok) {
             console.log('Cargo creado');
             getJobs();
-        } else {
-            const json = await response.json();
-            setFormError(json.message);
         }
-        e.target.reset();
     }
 
     const deleteJob = async (id) => {
@@ -77,10 +73,10 @@ function Jobs() {
     const onSubmitUpdate = async (e) => {
         e.preventDefault();
         const title = e.target.title.value;
-        const minSalary = parseFloat(e.target.minSalary.value);
-        const maxSalary = parseFloat(e.target.maxSalary.value);
+        const minSalary = e.target.minSalary.value;
+        const maxSalary = e.target.maxSalary.value;
 
-        if (minSalary > maxSalary) {
+        if (minSalary < maxSalary) {
             setFormUpdateError('El salario minimo no puede ser mayor al salario maximo');
             return;
         }
@@ -109,7 +105,6 @@ function Jobs() {
         }
 
         setShow(false);
-        e.target.reset();
     };
 
     const handleUpdate = (e) => {

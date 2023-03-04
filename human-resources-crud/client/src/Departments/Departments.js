@@ -40,11 +40,7 @@ function Departments() {
         if (response.ok) {
             console.log('Departamento creado');
             getDepartments();
-        } else {
-            const json = await response.json();
-            setFormError(json.message);
         }
-        e.target.reset();
     }
 
     const deleteDepartment = async (id) => {
@@ -92,7 +88,6 @@ function Departments() {
         }
 
         setShow(false);
-        e.target.reset();
     };
 
     const handleUpdate = (e) => {

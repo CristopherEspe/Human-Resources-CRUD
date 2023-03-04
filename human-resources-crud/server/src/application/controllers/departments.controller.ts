@@ -40,20 +40,8 @@ export default class DepartmentsController extends Controller {
         method: 'post'
     })
     public async create(request: Request, response: Response) {
-        const name = request.body.name;
-        const exists = await Department.findOne({ where: { name } });
-
-        if (exists) {
-            response.status(400).json({ message: 'Name already exists' });
-            return;
-        }
-
-        try {
-            const department = await Department.create(request.body);
-            response.json(department);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        const department = await Department.create(request.body);
+        response.json(department);
     }
 
     @Route({
@@ -62,14 +50,6 @@ export default class DepartmentsController extends Controller {
     })
     public async update(request: Request, response: Response) {
         const id = request.params.id;
-        const name = request.body.name;
-        
-        // check if name already exists and id is not the same
-        const exists = await Department.findOne({ where: { name } });
-        if (exists && exists.id !== id) {
-            response.status(400).json({ message: 'Name already exists' });
-            return;
-        }
 
         if (!id) {
             response.status(400).json({ message: 'Invalid id' });
@@ -83,12 +63,8 @@ export default class DepartmentsController extends Controller {
             return;
         }
 
-        try {
-            await department.update(request.body);
-            response.json(department);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        await department.update(request.body);
+        response.json(department);
     }
 
     @Route({

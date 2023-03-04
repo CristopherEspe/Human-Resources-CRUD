@@ -113,11 +113,7 @@ function Employees() {
         if (response.ok) {
             console.log('Empleado creado');
             getEmployees();
-        } else {
-            const json = await response.json();
-            setFormError(json.message);
         }
-        e.target.reset();
     }
 
     const onSubmitUpdate = async (e) => {
@@ -191,7 +187,6 @@ function Employees() {
             console.log(json);
             setFormUpdateError(json.message);
         }
-        e.target.reset();
     }
 
     const handleUpdate = (e) => {

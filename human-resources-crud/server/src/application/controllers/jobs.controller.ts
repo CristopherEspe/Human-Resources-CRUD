@@ -40,20 +40,8 @@ export default class JobsController extends Controller {
         method: 'post'
     })
     public async create(request: Request, response: Response) {
-        const title = request.body.title;
-        const exists = await Job.findOne({ where: { title } });
-
-        if (exists) {
-            response.status(400).json({ message: 'Name already exists' });
-            return;
-        }
-
-        try {
-            const job = await Job.create(request.body);
-            response.json(job);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        const job = await Job.create(request.body);
+        response.json(job);
     }
 
     @Route({
@@ -62,14 +50,6 @@ export default class JobsController extends Controller {
     })
     public async update(request: Request, response: Response) {
         const id = request.params.id;
-        const title = request.body.title;
-
-        const exists = await Job.findOne({ where: { title } });
-
-        if (exists && exists.id !== id) {
-            response.status(400).json({ message: 'Name already exists' });
-            return;
-        }
 
         if (!id) {
             response.status(400).json({ message: 'Invalid id' });
@@ -83,12 +63,8 @@ export default class JobsController extends Controller {
             return;
         }
 
-        try {
-            await job.update(request.body);
-            response.json(job);
-        } catch (error) {
-            response.status(500).json({ message: error.message });
-        }
+        await job.update(request.body);
+        response.json(job);
     }
 
     @Route({
